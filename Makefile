@@ -1,17 +1,18 @@
-.PHONY: build protos clean haberdasher server client
+.PHONY: build protos clean hat server client
 
 build: protos
 
-protos: haberdasher
+protos: hat
 
 clean:
-	rm ./rpc/haberdasher/*.go
+	rm ./rpc/hats/*.go
 
-haberdasher:
-	protoc --proto_path=$GOPATH/src:. --twirp_out=. --go_out=. ./rpc/haberdasher/*.proto
+hat:
+	protoc --proto_path=$GOPATH/src:. --twirp_out=. --go_out=. ./rpc/hats/*.proto
 
 server:
 	go run ./cmd/server/main.go
 
 client:
 	go run ./cmd/client/main.go
+	
