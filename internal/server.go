@@ -3,7 +3,7 @@ package internal
 import (
 	"context"
 
-	"github.com/djacobs24/go-twirp-example/rpc/haberdasher"
+	"github.com/djacobs24/go-twirp-example/rpc/hats"
 	"github.com/segmentio/ksuid"
 	"github.com/twitchtv/twirp"
 )
@@ -12,24 +12,43 @@ import (
 type Server struct{}
 
 // CreateHat makes a new hat
-func (s *Server) CreateHat(ctx context.Context, chr *haberdasher.CreateHatRequest) (h *haberdasher.Hat, err error) {
-
+func (s *Server) CreateHat(ctx context.Context, req *hats.CreateHatRequest) (h *hats.Hat, err error) {
 	// Size must be greater than 0 inches
-	if chr.Size.Inches <= 0 {
+	if req.Size.Inches <= 0 {
 		return nil, twirp.InvalidArgumentError("inches", "Hat size must be greater than 0.")
 	}
-
 	// Generate id
 	id := ksuid.New().String()
-
 	// Construct hat
-	ht := &haberdasher.Hat{
+	resp := &hats.Hat{
 		ID:    id,
-		Name:  chr.Name,
-		Size:  chr.Size,
-		Color: chr.Color,
+		Name:  req.Name,
+		Size:  req.Size,
+		Color: req.Color,
 	}
-
 	// Return hat
-	return ht, nil
+	return resp, nil
+}
+
+// FindHat finds a hat by id
+func (s *Server) FindHat(ctx context.Context, req *hats.FindHatRequest) (h *hats.Hat, err error) {
+	// Generate id
+	id := req.ID
+	// Construct response
+	resp := &hats.Hat{
+		ID:    id,
+		Name:  "Name",
+		Size:  &hats.Size{Inches: 22},
+		Color: "Color",
+	}
+	// Return response
+	return resp, nil
+}
+
+// DeleteHat deletes a hat by id
+func (s *Server) DeleteHat(ctx context.Context, req *hats.DeleteHatRequest) (dhr *hats.DeleteHatResponse, err error) {
+	// Construct response
+	resp := &hats.DeleteHatResponse{}
+	// Return response
+	return resp, nil
 }
