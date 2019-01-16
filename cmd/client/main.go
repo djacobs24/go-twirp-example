@@ -35,8 +35,11 @@ func createHat(client hats.Hats) {
 	name := hat.Name
 	inches := hat.Size.Inches
 	color := hat.Color
+	active := hat.Active
+	createdAt := hat.CreatedAt
+	updatedAt := hat.UpdatedAt
 	// Print hat data
-	fmt.Printf("\nCreated Hat:\nID: %s\nName: %s\nSize: %d\nColor: %s\n", id, name, inches, color)
+	fmt.Printf("\nCreated Hat:\nID: %s\nName: %s\nSize: %d\nColor: %s\nActive: %t\nCreated At: %d\nUpdated At: %d\n", id, name, inches, color, active, createdAt, updatedAt)
 }
 
 func findHat(client hats.Hats) {
@@ -56,8 +59,11 @@ func findHat(client hats.Hats) {
 	name := resp.Name
 	inches := resp.Size.Inches
 	color := resp.Color
+	active := resp.Active
+	createdAt := resp.CreatedAt
+	updatedAt := resp.UpdatedAt
 	// Print hat data
-	fmt.Printf("\nFound Hat:\nID: %s\nName: %s\nSize: %d\nColor: %s\n", id, name, inches, color)
+	fmt.Printf("\nFound Hat:\nID: %s\nName: %s\nSize: %d\nColor: %s\nActive: %t\nCreated At: %d\nUpdated At: %d\n", id, name, inches, color, active, createdAt, updatedAt)
 }
 
 func deleteHat(client hats.Hats) {
