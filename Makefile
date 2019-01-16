@@ -1,4 +1,4 @@
-.PHONY: protos haberdasher
+.PHONY: build protos clean haberdasher server client
 
 build: protos
 
