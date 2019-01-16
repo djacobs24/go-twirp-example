@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package hats;
+
+import "rpc/hats/hat.proto";
+
+service Hats {
+  // CreateHat creates a new hat
+  rpc CreateHat(CreateHatRequest) returns (Hat);
+  // FindHat finds a hat by its id
+  rpc FindHat(FindHatRequest) returns (Hat);
+  // DeleteHat deletes a hat by its id
+  rpc DeleteHat(DeleteHatRequest) returns (DeleteHatResponse);
+}
+
+// The request to create a hat  
+message CreateHatRequest {
+    string Name = 1;
+    Size Size = 2;
+    string Color = 3;
+}
+
+// The request to find a hat  
+message FindHatRequest {
+  string ID = 1;
+}
+
+// The request to delete a hat  
+message DeleteHatRequest {
+  string ID = 1;
+}
+
+// The response to deleting a hat  
+message DeleteHatResponse {
+}

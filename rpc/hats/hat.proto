@@ -1,11 +1,6 @@
 syntax = "proto3";
 
-package haberdasher;
-
-service Haberdasher {
-  // CreateHat creates a new hat
-  rpc CreateHat(CreateHatRequest) returns (Hat);
-}
+package hats;
 
 // The hat model
 message Hat {
@@ -23,10 +18,3 @@ message Hat {
 message Size {
     int32 Inches = 1;
   }
-
-// The request to create a hat  
-message CreateHatRequest {
-    string Name = 1;
-    Size Size = 2;
-    string Color = 3;
-}
