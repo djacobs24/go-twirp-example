@@ -1,4 +1,4 @@
-# go-twirp-example
+# Go Twirp Example
 
 ## Run
 
